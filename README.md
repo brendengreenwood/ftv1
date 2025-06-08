@@ -1,10 +1,11 @@
-# ft.ual Intranet Navigation System
+# FTV1 - ft.ual Intranet Navigation System
 
 A modern, responsive intranet navigation system built with React, TypeScript, and Tailwind CSS. Features a comprehensive navigation structure based on ft.ual.com with reusable content app layout patterns.
 
 ## 🚀 Features
 
 ### Navigation System
+
 - **Comprehensive Navigation**: 100+ navigation items across 6 main sections
 - **Multi-level Structure**: Supports nested navigation with smooth animations
 - **External System Integration**: Links to Coupa, Concur, Egencia, YBR, Wayfinder, and more
@@ -12,6 +13,7 @@ A modern, responsive intranet navigation system built with React, TypeScript, an
 - **Search Functionality**: Built-in navigation search with fuzzy matching
 
 ### Content App Layout Pattern
+
 - **Reusable Architecture**: "App within an app" pattern for content areas
 - **Top Bar System**: Configurable headers with titles, subtitles, icons, and actions
 - **Three-Panel Layout**: Secondary navigation (ITS) + Content + Table of Contents (OTP)
@@ -19,6 +21,7 @@ A modern, responsive intranet navigation system built with React, TypeScript, an
 - **Smooth Animations**: Framer Motion powered transitions and micro-interactions
 
 ### Technical Features
+
 - **TypeScript**: Full type safety throughout the application
 - **Tailwind CSS**: Utility-first styling with custom design system
 - **Framer Motion**: Smooth animations and transitions
@@ -64,23 +67,27 @@ src/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
-git clone https://github.com/brendengreenwood/ft-ual-intranet-navigation.git
-cd ft-ual-intranet-navigation
+git clone https://github.com/brendengreenwood/ftv1.git
+cd ftv1
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -98,12 +105,16 @@ npm run build
 ### Basic Content App Layout
 
 ```tsx
-import { ContentAppLayout, ContentAppProvider, ContentAppSecondaryNav } from '@/components/layout';
+import {
+  ContentAppLayout,
+  ContentAppProvider,
+  ContentAppSecondaryNav,
+} from "@/components/layout";
 
 const MyContentApp = () => {
   const navItems = [
-    { id: 'overview', title: 'Overview', path: '/my-app' },
-    { id: 'settings', title: 'Settings', path: '/my-app/settings' },
+    { id: "overview", title: "Overview", path: "/my-app" },
+    { id: "settings", title: "Settings", path: "/my-app/settings" },
   ];
 
   return (
@@ -114,10 +125,7 @@ const MyContentApp = () => {
         icon={<MyIcon />}
         theme="blue"
         secondaryNav={
-          <ContentAppSecondaryNav
-            title="In this section"
-            items={navItems}
-          />
+          <ContentAppSecondaryNav title="In this section" items={navItems} />
         }
       >
         {/* Your content here */}
@@ -130,19 +138,19 @@ const MyContentApp = () => {
 ### Custom Navigation Section
 
 ```tsx
-import { NavigationSection } from '@/components/navigation';
+import { NavigationSection } from "@/components/navigation";
 
 const customSection = {
-  id: 'my-section',
-  label: 'My Section',
+  id: "my-section",
+  label: "My Section",
   icon: <MyIcon />,
   items: [
-    { id: 'item1', label: 'Item 1', path: '/item1' },
-    { id: 'item2', label: 'Item 2', path: '/item2' },
+    { id: "item1", label: "Item 1", path: "/item1" },
+    { id: "item2", label: "Item 2", path: "/item2" },
   ],
 };
 
-<NavigationSection section={customSection} />
+<NavigationSection section={customSection} />;
 ```
 
 ## 🎯 Key Design Principles
