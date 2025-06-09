@@ -1,27 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import { FormControl, Select, MenuItem } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import React, { useState, useEffect } from "react";
+import { FormControl, Select, MenuItem } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-const sections = [
-  { id: 'order-uniforms', text: 'Order Uniforms' },
-  { id: 'work-groups', text: 'Work Groups' },
-  { id: 'identification-standards', text: 'Identification Standards' },
-  { id: 'uniform-sizing-care', text: 'Uniform Sizing & Care' },
-  { id: 'faq', text: 'Frequently Asked Questions' },
-  { id: 'about', text: 'About the Uniform Program' },
-];
+interface TableOfContentsItem {
+  id: string;
+  title: string;
+}
+
+interface TableOfContentsProps {
+  title?: string;
+  items?: TableOfContentsItem[];
+}
 
 const FullWidthSelect = styled(Select)({
-  '& .MuiPaper-root': {
-    width: '100vw',
-    maxWidth: '100vw',
-    left: '0 !important',
+  "& .MuiPaper-root": {
+    width: "100vw",
+    maxWidth: "100vw",
+    left: "0 !important",
   },
 });
 
-const TableOfContents: React.FC = () => {
-  const [activeId, setActiveId] = useState<string>('');
-  const [selectedSection, setSelectedSection] = useState<string>('');
+const TableOfContents: React.FC<TableOfContentsProps> = ({
+  title = "On this page",
+  items = [],
+}) => {
+  const [activeId, setActiveId] = useState<string>("");
+  const [selectedSection, setSelectedSection] = useState<string>("");
+  const [sections, setSections] = useState<TableOfContentsItem[]>([]);
+
+  // Auto-detect sections if no items provided
+  useEffect(() => {
+    if (items.length > 0) {
+      setSections(items);
+    } else {
+      // Auto-detect sections from the page
+      const detectedSections: TableOfContentsItem[] = [];
+      const headings = document.querySelectorAll(
+        "section[id], h1[id], h2[id], h3[id]"
+      );
+
+      headings.forEach((heading) => {
+        if (heading.id) {
+          const title = heading.textContent?.trim() || heading.id;
+          detectedSections.push({ id: heading.id, title });
+        }
+      });
+
+      setSections(detectedSections);
+    }
+  }, [items]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -33,7 +60,7 @@ const TableOfContents: React.FC = () => {
         });
       },
       {
-        rootMargin: '-20% 0% -35% 0%',
+        rootMargin: "-20% 0% -35% 0%",
         threshold: 1.0,
       }
     );
@@ -46,23 +73,23 @@ const TableOfContents: React.FC = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [sections]);
 
   const handleSectionChange = (event: any) => {
     const sectionId = event.target.value;
     setSelectedSection(sectionId);
-    
+
     if (sectionId) {
       document.getElementById(sectionId)?.scrollIntoView({
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   };
 
   // Get the active section text
   const getActiveSectionText = () => {
-    const section = sections.find(s => s.id === activeId);
-    return section ? section.text : '';
+    const section = sections.find((s) => s.id === activeId);
+    return section ? section.title : "";
   };
 
   return (
@@ -75,29 +102,29 @@ const TableOfContents: React.FC = () => {
             onChange={handleSectionChange}
             displayEmpty
             className="bg-white"
-            renderValue={() => "On This Page"}
+            renderValue={() => title}
             MenuProps={{
               PaperProps: {
                 style: {
-                  width: '100vw',
-                  maxWidth: '100vw',
-                  left: '0 !important',
-                  marginTop: '8px',
+                  width: "100vw",
+                  maxWidth: "100vw",
+                  left: "0 !important",
+                  marginTop: "8px",
                 },
               },
               anchorOrigin: {
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               },
               transformOrigin: {
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               },
             }}
           >
             {sections.map((section) => (
               <MenuItem key={section.id} value={section.id}>
-                {section.text}
+                {section.title}
               </MenuItem>
             ))}
           </FullWidthSelect>
@@ -112,7 +139,7 @@ const TableOfContents: React.FC = () => {
         className="w-48 shrink-0 hidden lg:block sticky top-0 max-h-screen overflow-y-auto py-6 pl-4"
         aria-label="Table of contents"
       >
-        <h4 className="text-sm font-medium text-gray-900 mb-4">On this page</h4>
+        <h4 className="text-sm font-medium text-gray-900 mb-4">{title}</h4>
         <ul className="space-y-2 text-sm">
           {sections.map((section) => (
             <li key={section.id}>
@@ -120,17 +147,17 @@ const TableOfContents: React.FC = () => {
                 href={`#${section.id}`}
                 className={`block py-1 ${
                   activeId === section.id
-                    ? 'text-blue-600 font-medium'
-                    : 'text-gray-500 hover:text-gray-900'
+                    ? "text-blue-600 font-medium"
+                    : "text-gray-500 hover:text-gray-900"
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
                   document.getElementById(section.id)?.scrollIntoView({
-                    behavior: 'smooth',
+                    behavior: "smooth",
                   });
                 }}
               >
-                {section.text}
+                {section.title}
               </a>
             </li>
           ))}
