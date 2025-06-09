@@ -5,6 +5,13 @@ import { ContentAppSecondaryNav } from "../components/layout/ContentAppSecondary
 import TableOfContents from "../components/TableOfContents";
 import { motion } from "framer-motion";
 import WorkIcon from "@mui/icons-material/Work";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "../components/ui/card";
 
 // Navigation items for the uniforms section
 const uniformsNavItems = [
@@ -58,75 +65,93 @@ const UniformsPage = () => {
       >
         {/* Content Area */}
         <motion.div
-          className="px-6 py-8"
+          className="p-content"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="max-w-4xl mx-auto space-y-12">
-            <section id="overview" className="mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-6">
-                Welcome to Employee Uniforms
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Welcome to the United Airlines uniform program. Here you'll find
-                everything you need to know about ordering, maintaining, and
-                wearing your uniform.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 border rounded-lg">
-                  <h3 className="text-xl font-semibold mb-3">Quick Start</h3>
-                  <p className="text-muted-foreground">
-                    New to the uniform program? Start here for essential
-                    information.
-                  </p>
-                </div>
-                <div className="p-6 border rounded-lg">
-                  <h3 className="text-xl font-semibold mb-3">Order Status</h3>
-                  <p className="text-muted-foreground">
-                    Track your current uniform orders and delivery status.
-                  </p>
-                </div>
-              </div>
+          <div className="max-w-4xl mx-auto space-y-section">
+            <section id="overview">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-3xl">
+                    Welcome to Employee Uniforms
+                  </CardTitle>
+                  <CardDescription className="text-lg">
+                    Welcome to the United Airlines uniform program. Here you'll
+                    find everything you need to know about ordering,
+                    maintaining, and wearing your uniform.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-component">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="text-xl">Quick Start</CardTitle>
+                        <CardDescription>
+                          New to the uniform program? Start here for essential
+                          information.
+                        </CardDescription>
+                      </CardHeader>
+                    </Card>
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="text-xl">Order Status</CardTitle>
+                        <CardDescription>
+                          Track your current uniform orders and delivery status.
+                        </CardDescription>
+                      </CardHeader>
+                    </Card>
+                  </div>
+                </CardContent>
+              </Card>
             </section>
 
-            <section id="customer-service" className="mb-12">
-              <h2 className="text-2xl font-semibold text-foreground mb-6">
-                Customer Service Uniforms
-              </h2>
-              <p className="text-muted-foreground">
-                Information about customer service uniform requirements and
-                options.
-              </p>
+            <section id="customer-service">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Customer Service Uniforms</CardTitle>
+                  <CardDescription>
+                    Information about customer service uniform requirements and
+                    options.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
             </section>
 
-            <section id="flight-attendants" className="mb-12">
-              <h2 className="text-2xl font-semibold text-foreground mb-6">
-                Flight Attendant Uniforms
-              </h2>
-              <p className="text-muted-foreground">
-                Comprehensive guide to flight attendant uniform standards and
-                care.
-              </p>
+            <section id="flight-attendants">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Flight Attendant Uniforms</CardTitle>
+                  <CardDescription>
+                    Comprehensive guide to flight attendant uniform standards
+                    and care.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
             </section>
 
-            <section id="pilots" className="mb-12">
-              <h2 className="text-2xl font-semibold text-foreground mb-6">
-                Pilot Uniforms
-              </h2>
-              <p className="text-muted-foreground">
-                Pilot uniform specifications, insignia, and maintenance
-                guidelines.
-              </p>
+            <section id="pilots">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Pilot Uniforms</CardTitle>
+                  <CardDescription>
+                    Pilot uniform specifications, insignia, and maintenance
+                    guidelines.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
             </section>
 
-            <section id="faq" className="mb-12">
-              <h2 className="text-2xl font-semibold text-foreground mb-6">
-                Frequently Asked Questions
-              </h2>
-              <p className="text-muted-foreground">
-                Common questions and answers about the uniform program.
-              </p>
+            <section id="faq">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Frequently Asked Questions</CardTitle>
+                  <CardDescription>
+                    Common questions and answers about the uniform program.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
             </section>
           </div>
         </motion.div>

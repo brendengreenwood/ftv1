@@ -32,6 +32,25 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    /* Spacing Token System - Based on 4px/8px increments */
+    --spacing-xs: 0.25rem; /* 4px */
+    --spacing-sm: 0.5rem; /* 8px */
+    --spacing-md: 0.75rem; /* 12px */
+    --spacing-lg: 1rem; /* 16px */
+    --spacing-xl: 1.25rem; /* 20px */
+    --spacing-2xl: 1.5rem; /* 24px */
+    --spacing-3xl: 2rem; /* 32px */
+    --spacing-4xl: 2.5rem; /* 40px */
+    --spacing-5xl: 3rem; /* 48px */
+    --spacing-6xl: 4rem; /* 64px */
+
+    /* Semantic Spacing Tokens */
+    --section-spacing: var(--spacing-lg); /* 16px between sections */
+    --content-padding: var(--spacing-2xl); /* 24px for content padding */
+    --card-padding: var(--spacing-2xl); /* 24px for card padding */
+    --element-spacing: var(--spacing-sm); /* 8px for small element spacing */
+    --component-spacing: var(--spacing-md); /* 12px for component spacing */
   }
   .dark {
     --background: 0 0% 3.9%;
